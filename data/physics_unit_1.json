@@ -1,0 +1,143 @@
+{
+  "id": "root",
+  "labelEn": "Harmonic Oscillation",
+  "labelVi": "Dao động điều hòa",
+  "category": "Main Topic",
+  "color": "#f59e0b",
+  "radius": 42,
+  "descEn": "Harmonic oscillation is a periodic motion where the object's displacement from its equilibrium position is a sinusoidal function of time.",
+  "descVi": "Dao động điều hòa là dao động tuần hoàn mà li độ của vật là một hàm cosin (hoặc sin) theo thời gian.",
+  "keyTerms": ["Harmonic Oscillation", "Simple Harmonic Motion", "Equilibrium Position", "Displacement", "Sinusoidal Function"],
+  "children": [
+    {
+      "id": "concepts",
+      "labelEn": "I. Basic Concepts",
+      "labelVi": "I. Các khái niệm cơ bản",
+      "category": "Concept",
+      "color": "#d97706",
+      "radius": 32,
+      "descEn": "Fundamental definitions of mechanical motion, periodic motion, and simple harmonic motion.",
+      "descVi": "Các định nghĩa nền tảng về chuyển động qua lại, dao động tuần hoàn và dao động điều hòa.",
+      "keyTerms": ["Mechanical Oscillation", "Periodic Motion", "Equilibrium"],
+      "children": [
+        {
+          "id": "concept_mechanical",
+          "labelEn": "1. Mechanical Oscillation",
+          "labelVi": "1. Dao động cơ",
+          "category": "Concept",
+          "color": "#b45309",
+          "radius": 24,
+          "descEn": "Repetitive back-and-forth motion of an object around a fixed equilibrium position.",
+          "descVi": "Chuyển động qua lại của một vật quanh một vị trí cân bằng xác định.",
+          "keyTerms": ["Back-and-forth", "Equilibrium Position", "Repeated Motion"]
+        },
+        {
+          "id": "concept_periodic",
+          "labelEn": "2. Periodic Oscillation",
+          "labelVi": "2. Dao động tuần hoàn",
+          "category": "Concept",
+          "color": "#b45309",
+          "radius": 24,
+          "descEn": "An oscillation in which the mechanical state of the object is exactly repeated at equal time intervals.",
+          "descVi": "Dao động mà trạng thái chuyển động của vật được lặp lại như cũ sau những khoảng thời gian bằng nhau.",
+          "keyTerms": ["Equal Intervals", "State Repetition", "Periodicity"]
+        },
+        {
+          "id": "concept_shm",
+          "labelEn": "3. Harmonic Oscillation",
+          "labelVi": "3. Dao động điều hòa",
+          "category": "Concept",
+          "color": "#b45309",
+          "radius": 24,
+          "descEn": "Special periodic oscillation represented by a cosine or sine function of time.",
+          "descVi": "Dao động tuần hoàn đặc biệt trong đó li độ là hàm cosin (hoặc sin) theo thời gian.",
+          "keyTerms": ["Cosine Function", "Sinusoidal Wave", "SHM"]
+        }
+      ]
+    },
+    {
+      "id": "parameters",
+      "labelEn": "II. Key Parameters",
+      "labelVi": "II. Các đại lượng đặc trưng",
+      "category": "Parameter",
+      "color": "#3b82f6",
+      "radius": 32,
+      "descEn": "Physical quantities used to describe the state, size, speed, and phase of harmonic oscillation.",
+      "descVi": "Các đại lượng vật lý dùng để xác định vị trí, kích thước, độ nhanh chậm và trạng thái dao động.",
+      "keyTerms": ["Displacement", "Amplitude", "Period", "Frequency", "Phase"],
+      "children": [
+        {
+          "id": "param_disp_amp",
+          "labelEn": "1. Displacement & Amplitude",
+          "labelVi": "1. Li độ (x) & Biên độ (A)",
+          "category": "Parameter",
+          "color": "#2563eb",
+          "radius": 24,
+          "descEn": "Displacement (x) is the distance from equilibrium. Amplitude (A) is the maximum displacement magnitude (A > 0).",
+          "descVi": "Li độ (x) là độ lệch khỏi vị trí cân bằng. Biên độ (A) là độ lệch cực đại, luôn có giá trị dương.",
+          "keyTerms": ["Displacement (x)", "Amplitude (A)", "Maximum Distance"],
+          "equation": "-A <= x <= +A"
+        },
+        {
+          "id": "param_period_freq",
+          "labelEn": "2. Period & Frequency",
+          "labelVi": "2. Chu kì (T) & Tần số (f)",
+          "category": "Parameter",
+          "color": "#2563eb",
+          "radius": 24,
+          "descEn": "Period T (s) is time for 1 full cycle. Frequency f (Hz) is number of cycles per second. Angular frequency omega (rad/s) measures phase rate.",
+          "descVi": "Chu kì T (s) là thời gian thực hiện 1 dao động toàn phần. Tần số f (Hz) là số dao động trong 1 giây. Tần số góc omega (rad/s) xác định tốc độ biến thiên pha.",
+          "keyTerms": ["Period T (s)", "Frequency f (Hz)", "Angular Frequency (rad/s)"],
+          "equation": "T = 1/f = (2 * pi) / omega"
+        },
+        {
+          "id": "param_phase",
+          "labelEn": "3. Phase & Initial Phase",
+          "labelVi": "3. Pha dao động & Pha ban đầu",
+          "category": "Parameter",
+          "color": "#2563eb",
+          "radius": 24,
+          "descEn": "Phase (omega*t + phi) determines the state of motion at time t. Initial phase phi specifies position and direction at t = 0.",
+          "descVi": "Pha dao động (omega*t + phi) xác định trạng thái dao động ở thời điểm t. Pha ban đầu phi xác định vị trí và chiều chuyển động ở t = 0.",
+          "keyTerms": ["Phase (omega*t + phi)", "Initial Phase (phi)", "Oscillation State"]
+        }
+      ]
+    },
+    {
+      "id": "kinematics",
+      "labelEn": "III. Equation & Graphs",
+      "labelVi": "III. Phương trình & Đồ thị",
+      "category": "MathModel",
+      "color": "#10b981",
+      "radius": 32,
+      "descEn": "Mathematical representation and graphical visualization of displacement versus time.",
+      "descVi": "Mô hình toán học và đồ thị biểu diễn sự biến thiên li độ theo thời gian.",
+      "keyTerms": ["Displacement Equation", "Sinusoidal Graph", "Waveform"],
+      "children": [
+        {
+          "id": "eq_x",
+          "labelEn": "1. Displacement Equation",
+          "labelVi": "1. Phương trình li độ x(t)",
+          "category": "MathModel",
+          "color": "#059669",
+          "radius": 24,
+          "descEn": "Standard mathematical equation describing harmonic oscillation position over time.",
+          "descVi": "Phương trình toán học chuẩn biểu diễn li độ của vật dao động điều hòa theo thời gian.",
+          "keyTerms": ["x(t)", "Amplitude A", "Angular Frequency omega", "Phase phi"],
+          "equation": "x = A * cos(omega * t + phi)"
+        },
+        {
+          "id": "graph_xt",
+          "labelEn": "2. Displacement-Time Graph",
+          "labelVi": "2. Đồ thị Li độ - Thời gian (x-t)",
+          "category": "MathModel",
+          "color": "#059669",
+          "radius": 24,
+          "descEn": "A smooth continuous sinusoidal curve (sine/cosine wave) oscillating between +A and -A.",
+          "descVi": "Đường hình sin mềm mại dao động tuần hoàn liên tục trong khoảng giá trị từ +A đến -A.",
+          "keyTerms": ["Sinusoidal Curve", "Sine Wave", "Oscillation Waveform"]
+        }
+      ]
+    }
+  ]
+}
