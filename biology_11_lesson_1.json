@@ -1,0 +1,272 @@
+{
+  "id": "root",
+  "labelEn": "Metabolism & Energy Transformation",
+  "labelVi": "Trao đổi chất & Chuyển hóa năng lượng",
+  "category": "Main Topic",
+  "color": "#10b981",
+  "radius": 42,
+  "descEn": "Metabolism and energy transformation are fundamental characteristics of living organisms, sustaining life, cell structure, growth, reproduction, and response to environmental stimuli.",
+  "descVi": "Trao đổi chất và chuyển hóa năng lượng là đặc tính cơ bản của sự sống, duy trì cấu trúc tế bào, sinh trưởng, sinh sản và đáp ứng với môi trường.",
+  "keyTerms": ["Metabolism", "Energy Transformation", "Homeostasis", "ATP", "Living System"],
+  "children": [
+    {
+      "id": "roles",
+      "labelEn": "I. Roles in Living Organisms",
+      "labelVi": "I. Vai trò đối với sinh vật",
+      "category": "Role",
+      "color": "#06b6d4",
+      "radius": 32,
+      "descEn": "Metabolism and energy transformation play three critical biological roles essential for living systems.",
+      "descVi": "Trao đổi chất và chuyển hóa năng lượng đóng 3 vai trò sinh học cốt lõi đối với cơ thể sống.",
+      "keyTerms": ["Biosynthesis", "ATP Generation", "Homeostasis", "Excretion"],
+      "children": [
+        {
+          "id": "role_materials",
+          "labelEn": "1. Supply Raw Materials",
+          "labelVi": "1. Cung cấp nguyên liệu cấu tạo",
+          "category": "Role",
+          "color": "#0891b2",
+          "radius": 24,
+          "descEn": "Provides essential building blocks to synthesize cellular components, organs, and tissue structures for growth, tissue repair, and reproduction.",
+          "descVi": "Cung cấp các chất dinh dưỡng để tổng hợp nên tế bào, cơ quan, giúp cơ thể phát triển, phục hồi tổn thương và sinh sản.",
+          "keyTerms": ["Cellular Components", "Tissue Repair", "Growth", "Anabolism"]
+        },
+        {
+          "id": "role_energy",
+          "labelEn": "2. Provide Energy (ATP)",
+          "labelVi": "2. Cung cấp năng lượng duy trì sống",
+          "category": "Role",
+          "color": "#0891b2",
+          "radius": 24,
+          "descEn": "Converts nutrient energy into chemical potential energy stored in ATP, powering all cellular activities like active transport, cell division, and movement.",
+          "descVi": "Chuyển hóa hóa năng trong chất dinh dưỡng thành ATP để cung cấp năng lượng cho vận chuyển tích cực, phân bào, cảm ứng, vận động.",
+          "keyTerms": ["ATP", "Active Transport", "Cellular Work", "Chemical Energy"]
+        },
+        {
+          "id": "role_excretion",
+          "labelEn": "3. Excrete Waste & Homeostasis",
+          "labelVi": "3. Bài tiết chất thải & Cân bằng nội môi",
+          "category": "Role",
+          "color": "#0891b2",
+          "radius": 24,
+          "descEn": "Removes toxic, redundant, or metabolic waste products (CO2, urea, uric acid) from the body to maintain constant internal physiological conditions.",
+          "descVi": "Thải các chất dư thừa, chất độc hại (CO2, urê) ra môi trường để duy trì sự ổn định của môi trường bên trong cơ thể (cân bằng nội môi).",
+          "keyTerms": ["Waste Excretion", "Toxicity Elimination", "Homeostasis", "Internal Environment"]
+        }
+      ]
+    },
+    {
+      "id": "signs",
+      "labelEn": "II. Characteristic Signs",
+      "labelVi": "II. Các dấu hiệu đặc trưng",
+      "category": "Characteristic",
+      "color": "#3b82f6",
+      "radius": 32,
+      "descEn": "Metabolism in organisms exhibits 4 main characteristics through coupled uptake, intracellular transformation, excretion, and physiological regulation.",
+      "descVi": "Quá trình trao đổi chất thể hiện qua 4 dấu hiệu đặc trưng ở các cấp độ tổ chức sống.",
+      "keyTerms": ["Nutrient Uptake", "Intracellular Transformation", "Regulation", "Open System"],
+      "children": [
+        {
+          "id": "sign_uptake",
+          "labelEn": "1. Intake & Transport",
+          "labelVi": "1. Tiếp nhận & Vận chuyển chất",
+          "category": "Characteristic",
+          "color": "#2563eb",
+          "radius": 24,
+          "descEn": "Plants absorb minerals, water, and CO2; Animals digest food items and inhale oxygen O2, transporting them to cells via circulatory or vascular systems.",
+          "descVi": "Thực vật lấy nước, khoáng, CO2; Động vật lấy thức ăn, O2 từ môi trường và vận chuyển tới từng tế bào.",
+          "keyTerms": ["Nutrient Ingestion", "Xylem & Phloem", "Circulatory System", "Absorption"]
+        },
+        {
+          "id": "sign_transformation",
+          "labelEn": "2. Cellular Transformation",
+          "labelVi": "2. Biến đổi chất tại tế bào",
+          "category": "Characteristic",
+          "color": "#2563eb",
+          "radius": 24,
+          "descEn": "Consists of Anabolism (synthesizing complex molecules and storing energy) and Catabolism (breaking down complex substances to release ATP).",
+          "descVi": "Gồm Đồng hóa (tổng hợp chất phức tạp, tích lũy năng lượng) và Dị hóa (phân giải chất hữu cơ, giải phóng ATP).",
+          "keyTerms": ["Anabolism", "Catabolism", "Enzymatic Reactions", "Biosynthesis"]
+        },
+        {
+          "id": "sign_excretion",
+          "labelEn": "3. Waste Elimination",
+          "labelVi": "3. Thải chất thải ra môi trường",
+          "category": "Characteristic",
+          "color": "#2563eb",
+          "radius": 24,
+          "descEn": "Metabolic end-products that cannot be utilized (e.g. CO2, H2O, nitrogenous wastes) are released back into the surrounding ecosystem.",
+          "descVi": "Sản phẩm không sử dụng hoặc dư thừa do dị hóa được cơ thể bài tiết ra ngoài môi trường sống.",
+          "keyTerms": ["Excretion", "CO2 Discharge", "Metabolic Bye-products"]
+        },
+        {
+          "id": "sign_regulation",
+          "labelEn": "4. Feedback & Regulation",
+          "labelVi": "4. Điều hòa & Hệ thống mở",
+          "category": "Characteristic",
+          "color": "#2563eb",
+          "radius": 24,
+          "descEn": "Metabolic rates are continuously self-regulated by hormones, neural feedback, and enzyme kinetics according to cellular requirements.",
+          "descVi": "Quá trình trao đổi chất luôn được điều chỉnh linh hoạt, phù hợp với nhu cầu sinh lý của cơ thể thông qua hormone và enzyme.",
+          "keyTerms": ["Feedback Control", "Hormonal Regulation", "Open System", "Self-Regulation"]
+        }
+      ]
+    },
+    {
+      "id": "energy_stages",
+      "labelEn": "III. Energy Transformation Stages",
+      "labelVi": "III. Các giai đoạn chuyển hóa năng lượng",
+      "category": "Energy",
+      "color": "#f59e0b",
+      "radius": 32,
+      "descEn": "Energy transformation in the biosphere proceeds through three interconnected functional stages.",
+      "descVi": "Chuyển hóa năng lượng trong sinh giới diễn ra qua 3 giai đoạn liên tiếp từ năng lượng mặt trời đến hoạt động sống.",
+      "keyTerms": ["Solar Energy", "Chemical Energy", "ATP", "Heat Dissipation"],
+      "children": [
+        {
+          "id": "stage_synthesis",
+          "labelEn": "1. Synthesis Stage (Totaling)",
+          "labelVi": "1. Giai đoạn tổng hợp (Anabolism)",
+          "category": "Energy",
+          "color": "#d97706",
+          "radius": 24,
+          "descEn": "Solar light energy is captured by chlorophyll during photosynthesis and converted into chemical bond potential energy stored in organic molecules (e.g., glucose).",
+          "descVi": "Sắc tố quang hợp hấp thụ quang năng mặt trời và biến đổi thành hóa năng tích lũy trong các liên kết hóa học của phân tử hữu cơ.",
+          "keyTerms": ["Photosynthesis", "Light Energy", "Chlorophyll", "Organic Molecules"],
+          "equation": "Light Energy + 6CO2 + 6H2O -> C6H12O6 + 6O2"
+        },
+        {
+          "id": "stage_breakdown",
+          "labelEn": "2. Breakdown Stage (Respiration)",
+          "labelVi": "2. Giai đoạn phân giải (Hô hấp)",
+          "category": "Energy",
+          "color": "#d97706",
+          "radius": 24,
+          "descEn": "Cellular respiration decomposes complex organic molecules (carbohydrates, lipids) into simpler substances, converting stored energy into cellular currency: ATP.",
+          "descVi": "Hô hấp tế bào phân giải các chất hữu cơ phức tạp thành chất đơn giản, giải phóng hóa năng tích lũy chuyển sang dạng dễ sử dụng (ATP).",
+          "keyTerms": ["Cellular Respiration", "Glycolysis", "Krebs Cycle", "ATP Synthesis"],
+          "equation": "C6H12O6 + 6O2 -> 6CO2 + 6H2O + 30-32 ATP + Heat"
+        },
+        {
+          "id": "stage_mobilization",
+          "labelEn": "3. Mobilization Stage (Work)",
+          "labelVi": "3. Giai đoạn huy động năng lượng",
+          "category": "Energy",
+          "color": "#d97706",
+          "radius": 24,
+          "descEn": "Phosphate bonds in ATP molecules are hydrolyzed to yield free energy for biological work (movement, active transport, synthesis). Ultimately released as heat.",
+          "descVi": "Các liên kết cao năng trong ATP bị phá vỡ để cung cấp năng lượng cho mọi hoạt động sống. Cuối cùng biến thành nhiệt năng tỏa ra môi trường.",
+          "keyTerms": ["ATP Hydrolysis", "Biological Work", "Heat Loss", "Phosphate Bond"],
+          "equation": "ATP + H2O -> ADP + Pi + Free Energy (7.3 kcal/mol)"
+        }
+      ]
+    },
+    {
+      "id": "cell_organism",
+      "labelEn": "IV. Cell vs Organism Level Relationship",
+      "labelVi": "IV. Mối quan hệ Cấp tế bào & Cơ thể",
+      "category": "Relational",
+      "color": "#a855f7",
+      "radius": 32,
+      "descEn": "Metabolism at the cellular level forms the essential foundation for organ-level and whole-organism metabolic functioning.",
+      "descVi": "Trao đổi chất ở cấp độ tế bào là cơ sở cho quá trình trao đổi chất và chuyển hóa năng lượng ở cấp độ cơ thể.",
+      "keyTerms": ["Cellular Level", "Organism Level", "Interdependence", "Nutrient Flow"],
+      "children": [
+        {
+          "id": "organism_intake",
+          "labelEn": "Organism Supply -> Cell",
+          "labelVi": "Cơ thể tiếp nhận -> Tế bào",
+          "category": "Relational",
+          "color": "#9333ea",
+          "radius": 22,
+          "descEn": "The organism ingests nutrients & O2 from environment, transport systems deliver raw substrates directly to cellular cytoplasm and mitochondria.",
+          "descVi": "Cơ thể lấy chất dinh dưỡng và oxygen từ môi trường, hệ vận chuyển đưa các chất đến từng tế bào.",
+          "keyTerms": ["Substrate Delivery", "Digestive System", "Respiratory System"]
+        },
+        {
+          "id": "cell_excretion",
+          "labelEn": "Cell Waste -> Organism Excretion",
+          "labelVi": "Tế bào bài tiết -> Cơ thể thải",
+          "category": "Relational",
+          "color": "#9333ea",
+          "radius": 22,
+          "descEn": "Metabolic byproducts created inside cells are expelled into interstitial fluids and transported out of the body through excretory organs.",
+          "descVi": "Chất thải sinh ra từ quá trình dị hóa ở tế bào được vận chuyển ra ngoài nhờ các cơ quan bài tiết của cơ thể.",
+          "keyTerms": ["Metabolic Waste", "Excretory Organs", "Venous Transport"]
+        }
+      ]
+    },
+    {
+      "id": "nutritional_modes",
+      "labelEn": "V. Nutritional Modes (Modes of Metabolism)",
+      "labelVi": "V. Các phương thức trao đổi chất",
+      "category": "Nutritional",
+      "color": "#f43f5e",
+      "radius": 32,
+      "descEn": "Organisms are classified into two primary nutritional categories based on their source of carbon and energy: Autotrophs and Heterotrophs.",
+      "descVi": "Dựa vào nguồn carbon và nguồn năng lượng sử dụng, sinh vật được chia thành 2 nhóm phương thức dinh dưỡng chính: Tự dưỡng và Dị dưỡng.",
+      "keyTerms": ["Autotrophs", "Heterotrophs", "Photoautotroph", "Chemoautotroph"],
+      "children": [
+        {
+          "id": "autotrophs",
+          "labelEn": "1. Autotrophic Nutrition (Tự dưỡng)",
+          "labelVi": "1. Phương thức Tự dưỡng",
+          "category": "Nutritional",
+          "color": "#e11d48",
+          "radius": 26,
+          "descEn": "Organisms that synthesize complex organic compounds from simple inorganic molecules (CO2, H2O) using light or inorganic chemical reactions.",
+          "descVi": "Sinh vật tự tổng hợp chất hữu cơ từ các chất vô cơ đơn giản (CO2, H2O, khoáng) tích lũy năng lượng.",
+          "keyTerms": ["Autotroph", "Primary Producers", "Inorganic Conversion"],
+          "children": [
+            {
+              "id": "photoautotrophs",
+              "labelEn": "Photoautotrophs (Quang tự dưỡng)",
+              labelVi": "Quang tự dưỡng (Cây xanh, tảo)",
+              category": "Nutritional",
+              color": "#be123c",
+              radius: 20,
+              "descEn": "Utilize sunlight energy and chlorophyll pigments to fix CO2 into sugars. Examples: Green plants, cyanobacteria, eukaryotic algae.",
+              "descVi": "Sử dụng năng lượng ánh sáng mặt trời để tổng hợp chất hữu cơ. Ví dụ: Thực vật, tảo, vi khuẩn quang hợp.",
+              "keyTerms": ["Sunlight", "Chlorophyll", "Green Plants", "Algae"]
+            },
+            {
+              "id": "chemoautotrophs",
+              "labelEn": "Chemoautotrophs (Hóa tự dưỡng)",
+              labelVi": "Hóa tự dưỡng (Vi khuẩn nitrat hóa)",
+              category": "Nutritional",
+              color": "#be123c",
+              radius: 20,
+              "descEn": "Utilize energy released from oxidation of inorganic chemical compounds (H2S, NH4+, NO2-) to synthesize organic substances. Examples: Nitrifying bacteria, sulfur bacteria.",
+              "descVi": "Sử dụng năng lượng từ phản ứng oxy hóa các chất vô cơ (H2S, NH4+) để tổng hợp chất hữu cơ. Ví dụ: Vi khuẩn nitrat hóa, vi khuẩn lưu huỳnh.",
+              "keyTerms": ["Inorganic Oxidation", "Nitrifying Bacteria", "Chemical Energy"]
+            }
+          ]
+        },
+        {
+          "id": "heterotrophs",
+          "labelEn": "2. Heterotrophic Nutrition (Dị dưỡng)",
+          "labelVi": "2. Phương thức Dị dưỡng",
+          "category": "Nutritional",
+          "color": "#e11d48",
+          "radius": 26,
+          "descEn": "Organisms unable to synthesize organic compounds from inorganic sources. They must consume pre-existing organic matter derived from autotrophs or other heterotrophs.",
+          "descVi": "Sinh vật không có khả năng tự tổng hợp chất hữu cơ từ chất vô cơ, phải lấy chất hữu cơ có sẵn từ sinh vật khác.",
+          "keyTerms": ["Consumers", "Ingestion", "Digestion", "Decomposers"],
+          "children": [
+            {
+              "id": "ingestive_hetero",
+              "labelEn": "Ingestive & Absorpive Animals",
+              "labelVi": "Động vật & Nấm dị dưỡng",
+              category": "Nutritional",
+              color": "#be123c",
+              radius: 20,
+              "descEn": "Includes herbivores, carnivores, omnivores (ingest solid/liquid food), saprophytes and parasitic fungi/bacteria (absorb soluble organic matter).",
+              "descVi": "Gồm Động vật (ăn thực vật, ăn thịt, ăn tạp - tiêu hóa nội/ngoại bào) và Nấm, vi khuẩn dị dưỡng (phân giải chất hữu cơ).",
+              "keyTerms": ["Herbivores", "Carnivores", "Fungi", "Decomposers"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
