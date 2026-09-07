@@ -221,10 +221,10 @@
             {
               "id": "photoautotrophs",
               "labelEn": "Photoautotrophs (Quang tự dưỡng)",
-              labelVi": "Quang tự dưỡng (Cây xanh, tảo)",
-              category": "Nutritional",
-              color": "#be123c",
-              radius: 20,
+              "labelVi": "Quang tự dưỡng (Cây xanh, tảo)",
+              "category": "Nutritional",
+              "color": "#be123c",
+              "radius": 20,
               "descEn": "Utilize sunlight energy and chlorophyll pigments to fix CO2 into sugars. Examples: Green plants, cyanobacteria, eukaryotic algae.",
               "descVi": "Sử dụng năng lượng ánh sáng mặt trời để tổng hợp chất hữu cơ. Ví dụ: Thực vật, tảo, vi khuẩn quang hợp.",
               "keyTerms": ["Sunlight", "Chlorophyll", "Green Plants", "Algae"]
@@ -232,10 +232,10 @@
             {
               "id": "chemoautotrophs",
               "labelEn": "Chemoautotrophs (Hóa tự dưỡng)",
-              labelVi": "Hóa tự dưỡng (Vi khuẩn nitrat hóa)",
-              category": "Nutritional",
-              color": "#be123c",
-              radius: 20,
+              "labelVi": "Hóa tự dưỡng (Vi khuẩn nitrat hóa)",
+              "category": "Nutritional",
+              "color": "#be123c",
+              "radius": 20,
               "descEn": "Utilize energy released from oxidation of inorganic chemical compounds (H2S, NH4+, NO2-) to synthesize organic substances. Examples: Nitrifying bacteria, sulfur bacteria.",
               "descVi": "Sử dụng năng lượng từ phản ứng oxy hóa các chất vô cơ (H2S, NH4+) để tổng hợp chất hữu cơ. Ví dụ: Vi khuẩn nitrat hóa, vi khuẩn lưu huỳnh.",
               "keyTerms": ["Inorganic Oxidation", "Nitrifying Bacteria", "Chemical Energy"]
@@ -257,9 +257,9 @@
               "id": "ingestive_hetero",
               "labelEn": "Ingestive & Absorpive Animals",
               "labelVi": "Động vật & Nấm dị dưỡng",
-              category": "Nutritional",
-              color": "#be123c",
-              radius: 20,
+              "category": "Nutritional",
+              "color": "#be123c",
+              "radius": 20,
               "descEn": "Includes herbivores, carnivores, omnivores (ingest solid/liquid food), saprophytes and parasitic fungi/bacteria (absorb soluble organic matter).",
               "descVi": "Gồm Động vật (ăn thực vật, ăn thịt, ăn tạp - tiêu hóa nội/ngoại bào) và Nấm, vi khuẩn dị dưỡng (phân giải chất hữu cơ).",
               "keyTerms": ["Herbivores", "Carnivores", "Fungi", "Decomposers"]
