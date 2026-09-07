@@ -3,234 +3,195 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cosmic Mind Map Viewer</title>
+  <title>Knowledge Cosmos - Mindmap Viewer</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-    body { font-family: 'Plus Jakarta Sans', sans-serif; user-select: none; overflow: hidden; background-color: #030712; color: #f8fafc; }
-    #mindmap-canvas { cursor: grab; touch-action: none; }
-    #mindmap-canvas:active { cursor: grabbing; }
-    .glass-panel { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030712; color: #f8fafc; overflow: hidden; }
+    .nebula-bg {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.8) 0%, rgba(3, 7, 18, 1) 100%);
+      z-index: -1; pointer-events: none;
+    }
+    .node-circle { cursor: pointer; transition: all 0.3s ease; }
+    .node-circle:hover { filter: drop-shadow(0 0 12px currentColor); }
+    .link-line { stroke-opacity: 0.4; stroke-dasharray: 4; animation: dash 20s linear infinite; }
+    @keyframes dash { to { stroke-dashoffset: -100; } }
   </style>
 </head>
-<body class="w-screen h-screen relative flex flex-col">
+<body class="w-screen h-screen relative flex">
 
-  <!-- Back to Dashboard Button & Header -->
-  <header class="absolute top-4 left-4 right-4 z-20 flex flex-wrap justify-between items-center gap-3 pointer-events-none">
-    <div class="flex items-center gap-3 pointer-events-auto">
-      <a href="index.html" class="glass-panel p-3.5 rounded-2xl text-slate-300 hover:text-white hover:bg-white/10 transition-all flex items-center gap-2 text-xs font-bold shadow-2xl">
-        <i class="fa-solid fa-arrow-left"></i> <span>Về Vũ Trụ</span>
-      </a>
-      <div class="glass-panel px-5 py-2.5 rounded-2xl flex items-center gap-3 shadow-2xl">
-        <div id="header-icon" class="bg-gradient-to-tr from-emerald-500 to-teal-400 p-2 rounded-xl text-slate-950 font-black">
-          <i class="fa-solid fa-atom text-lg"></i>
-        </div>
-        <div>
-          <h1 id="header-title-en" class="text-sm font-bold text-white leading-tight">Loading Cosmos...</h1>
-          <p id="header-title-vi" class="text-[11px] font-medium text-emerald-400">Đang tải sơ đồ tư duy...</p>
-        </div>
-      </div>
-    </div>
+  <div class="nebula-bg"></div>
 
-    <!-- Search Controls -->
-    <div class="flex items-center gap-2 pointer-events-auto">
-      <div class="relative glass-panel rounded-xl overflow-hidden flex items-center">
-        <i class="fa-solid fa-magnifying-glass text-slate-400 pl-4 text-xs"></i>
-        <input id="search-input" type="text" placeholder="Tìm kiếm khái niệm..." class="bg-transparent text-xs text-slate-200 placeholder-slate-400 px-3 py-2focus:outline-none w-40 sm:w-56">
-      </div>
-      <button id="reset-view-btn" class="glass-panel p-2.5 rounded-xl text-slate-300 hover:text-white" title="Reset View"><i class="fa-solid fa-compress"></i></button>
-    </div>
-  </header>
+  <!-- Top Bar Controls -->
+  <div class="absolute top-6 left-6 z-20 flex items-center gap-3">
+    <a href="index.html" class="px-4 py-2.5 rounded-xl bg-slate-900/80 border border-white/10 text-xs font-bold text-slate-300 hover:text-white hover:border-cyan-500/50 transition-all flex items-center gap-2 backdrop-blur-md">
+      <i class="fa-solid fa-arrow-left"></i> Back to Hub
+    </a>
+  </div>
 
-  <canvas id="mindmap-canvas" class="w-full h-full block bg-slate-950"></canvas>
+  <!-- Main SVG Canvas -->
+  <main class="w-full h-full">
+    <svg id="cosmos-svg" class="w-full h-full cursor-grab active:cursor-grabbing"></svg>
+  </main>
 
   <!-- Sidebar Detail Panel -->
-  <aside id="detail-sidebar" class="absolute top-0 right-0 h-full w-full sm:w-96 z-30 glass-panel translate-x-full transition-transform duration-300 flex flex-col border-l border-white/10 shadow-2xl">
-    <div class="p-5 border-b border-white/10 flex items-center justify-between bg-slate-900/50">
-      <span id="sidebar-category-badge" class="px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Concept</span>
-      <button id="close-sidebar-btn" class="p-2 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+  <aside id="detail-panel" class="absolute top-6 right-6 bottom-6 w-96 bg-slate-900/90 border border-white/10 rounded-3xl p-6 backdrop-blur-xl z-20 transform translate-x-[110%] transition-transform duration-300 overflow-y-auto flex flex-col justify-between shadow-2xl">
+    <div>
+      <div class="flex justify-between items-center mb-4">
+        <span id="node-category" class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
+          Category
+        </span>
+        <button onclick="closePanel()" class="text-slate-400 hover:text-white p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <h2 id="node-title-vi" class="text-xl font-extrabold text-white mb-1">Tên bài học</h2>
+      <h3 id="node-title-en" class="text-xs font-semibold text-cyan-400/80 mb-4">English Title</h3>
+
+      <!-- Vector Image Container -->
+      <div id="node-image-container"></div>
+
+      <!-- Description -->
+      <div class="space-y-3 mt-4">
+        <div class="p-4 rounded-2xl bg-slate-950/50 border border-white/5">
+          <p class="text-xs text-slate-300 leading-relaxed" id="node-desc-vi"></p>
+          <p class="text-[11px] text-slate-500 mt-2 italic leading-relaxed" id="node-desc-en"></p>
+        </div>
+
+        <!-- Equation Box -->
+        <div id="node-equation-box" class="hidden p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-300 font-mono text-xs text-center font-bold">
+        </div>
+
+        <!-- Key Terms -->
+        <div>
+          <h4 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Key Terms</h4>
+          <div id="node-terms" class="flex flex-wrap gap-1.5"></div>
+        </div>
+      </div>
     </div>
-    <div class="p-6 overflow-y-auto flex-1 space-y-6">
-      <div>
-        <h2 id="sidebar-title-en" class="text-xl font-extrabold text-white">Select Node</h2>
-        <p id="sidebar-title-vi" class="text-xs font-semibold text-emerald-400 mt-0.5">Chọn nhánh trên sơ đồ</p>
-      </div>
-      <div class="space-y-4 text-xs">
-        <div>
-          <h3 class="font-bold text-slate-400 uppercase tracking-wider mb-1.5"><i class="fa-solid fa-align-left text-emerald-400"></i> English Explanation</h3>
-          <p id="sidebar-desc-en" class="text-slate-300 bg-slate-900/40 p-3.5 rounded-xl border border-white/5 leading-relaxed"></p>
-        </div>
-        <div>
-          <h3 class="font-bold text-slate-400 uppercase tracking-wider mb-1.5"><i class="fa-solid fa-language text-cyan-400"></i> Giải thích Tiếng Việt</h3>
-          <p id="sidebar-desc-vi" class="text-slate-300 bg-slate-900/40 p-3.5 rounded-xl border border-white/5 leading-relaxed"></p>
-        </div>
-        <div id="sidebar-keyterms-container">
-          <h3 class="font-bold text-slate-400 uppercase tracking-wider mb-1.5"><i class="fa-solid fa-key text-amber-400"></i> Key Vocabulary</h3>
-          <div id="sidebar-keyterms" class="flex flex-wrap gap-1.5"></div>
-        </div>
-        <div id="sidebar-equation-box" class="hidden">
-          <h3 class="font-bold text-slate-400 uppercase tracking-wider mb-1.5"><i class="fa-solid fa-flask text-rose-400"></i> Equation / Summary</h3>
-          <div id="sidebar-equation" class="font-mono bg-slate-900 p-3 rounded-xl border border-rose-500/20 text-rose-300 overflow-x-auto"></div>
-        </div>
-      </div>
+
+    <div class="pt-4 border-t border-white/5 text-[10px] text-slate-500 text-center">
+      Click anywhere on canvas to close details
     </div>
   </aside>
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const lessonId = urlParams.get('lesson') || 'biology_11_lesson_1';
+    const lessonId = urlParams.get('lesson') || 'physics_unit_1';
 
-    let mindMapData = null;
-    const canvas = document.getElementById('mindmap-canvas');
-    const ctx = canvas.getContext('2d');
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
+    const svg = d3.select("#cosmos-svg");
+    const width = window.innerWidth;
+    const height = window.innerHeight;
 
-    let transform = { x: width / 2, y: height / 2, scale: 1 };
-    let isDragging = false, dragStart = { x: 0, y: 0 };
-    let hoverNode = null, activeNode = null, searchQuery = "";
-    let collapsedNodes = new Set();
+    const g = svg.append("g");
 
-    // Fetch Dynamic JSON File
+    // Zoom setup
+    svg.call(d3.zoom().scaleExtent([0.3, 3]).on("zoom", (e) => g.attr("transform", e.transform)));
+
+    // Load JSON Data
     fetch(`data/${lessonId}.json`)
-      .then(res => res.json())
-      .then(data => {
-        mindMapData = data;
-        document.getElementById('header-title-en').innerText = mindMapData.labelEn;
-        document.getElementById('header-title-vi').innerText = mindMapData.labelVi;
-        layoutMindMap();
-        openDetailSidebar(mindMapData);
-        render();
+      .then(res => {
+        if (!res.ok) throw new Error("Lesson Not Found");
+        return res.json();
       })
+      .then(data => renderMindmap(data))
       .catch(err => {
-        document.getElementById('header-title-en').innerText = "Lesson Not Found";
-        document.getElementById('header-title-vi').innerText = "Không tìm thấy dữ liệu bài học này!";
+        alert("Error loading lesson: " + err.message);
       });
 
-    function layoutMindMap() {
-      if (!mindMapData) return;
-      function processAngles(node, depth, startAngle, endAngle) {
-        node.depth = depth; node.x = 0; node.y = 0;
-        if (!node.children || node.children.length === 0 || collapsedNodes.has(node.id)) return;
-        const angleStep = (endAngle - startAngle) / node.children.length;
-        node.children.forEach((child, i) => {
-          const midAngle = startAngle + i * angleStep + angleStep / 2;
-          child.angle = midAngle;
-          processAngles(child, depth + 1, startAngle + i * angleStep, startAngle + (i + 1) * angleStep);
-        });
-      }
-      mindMapData.angle = 0;
-      processAngles(mindMapData, 0, 0, Math.PI * 2);
+    function renderMindmap(rootData) {
+      const root = d3.hierarchy(rootData);
+      const treeLayout = d3.tree().size([height - 200, width - 400]);
+      treeLayout(root);
 
-      function computeCoordinates(node) {
-        if (node.id === "root") { node.x = 0; node.y = 0; }
-        else {
-          const dist = node.depth * 180 + (node.depth > 1 ? 40 : 0);
-          node.x = Math.cos(node.angle) * dist;
-          node.y = Math.sin(node.angle) * dist;
-        }
-        if (node.children && !collapsedNodes.has(node.id)) node.children.forEach(computeCoordinates);
-      }
-      computeCoordinates(mindMapData);
+      // Links
+      g.selectAll(".link-line")
+        .data(root.links())
+        .enter()
+        .append("line")
+        .attr("class", "link-line")
+        .attr("x1", d => d.source.y + 150)
+        .attr("y1", d => d.source.x + 100)
+        .attr("x2", d => d.target.y + 150)
+        .attr("y2", d => d.target.x + 100)
+        .attr("stroke", d => d.target.data.color || "#38bdf8");
+
+      // Nodes
+      const nodes = g.selectAll(".node-group")
+        .data(root.descendants())
+        .enter()
+        .append("g")
+        .attr("class", "node-group")
+        .attr("transform", d => `translate(${d.y + 150},${d.x + 100})`)
+        .on("click", (e, d) => showDetail(d.data));
+
+      nodes.append("circle")
+        .attr("r", d => d.data.radius || 25)
+        .attr("fill", d => d.data.color || "#0284c7")
+        .attr("class", "node-circle")
+        .attr("style", d => `color: ${d.data.color || '#0284c7'}`);
+
+      nodes.append("text")
+        .text(d => d.data.labelVi)
+        .attr("x", d => d.children ? - (d.data.radius + 10) : (d.data.radius + 10))
+        .attr("y", 4)
+        .attr("text-anchor", d => d.children ? "end" : "start")
+        .attr("fill", "#f8fafc")
+        .attr("font-size", "12px")
+        .attr("font-weight", "600");
     }
 
-    function render() {
-      ctx.save();
-      ctx.clearRect(0, 0, width, height);
-      ctx.translate(transform.x, transform.y);
-      ctx.scale(transform.scale, transform.scale);
-      if (mindMapData) {
-        drawConnections(mindMapData);
-        drawNodes(mindMapData);
+    function showDetail(data) {
+      document.getElementById("node-category").innerText = data.category || "General";
+      document.getElementById("node-title-vi").innerText = data.labelVi;
+      document.getElementById("node-title-en").innerText = data.labelEn;
+      document.getElementById("node-desc-vi").innerText = data.descVi || "";
+      document.getElementById("node-desc-en").innerText = data.descEn || "";
+
+      // Render Vector Image
+      const imgContainer = document.getElementById("node-image-container");
+      if (data.imageUrl) {
+        imgContainer.innerHTML = `
+          <div class="my-3 p-4 bg-slate-950 border border-amber-500/20 rounded-2xl flex flex-col items-center justify-center">
+            <img src="${data.imageUrl}" alt="${data.labelVi}" class="max-h-44 w-auto object-contain drop-shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-transform hover:scale-105" />
+            <span class="text-[9px] text-amber-400/60 mt-2 font-mono uppercase tracking-wider">Vector Illustration</span>
+          </div>
+        `;
+      } else {
+        imgContainer.innerHTML = "";
       }
-      ctx.restore();
-      requestAnimationFrame(render);
-    }
 
-    function drawConnections(node) {
-      if (!node.children || collapsedNodes.has(node.id)) return;
-      node.children.forEach(child => {
-        ctx.beginPath();
-        ctx.moveTo(node.x, node.y);
-        ctx.quadraticCurveTo((node.x + child.x)/2, (node.y + child.y)/2, child.x, child.y);
-        ctx.strokeStyle = child.color + "80";
-        ctx.lineWidth = Math.max(1.5, 4 - child.depth);
-        ctx.stroke();
-        drawConnections(child);
-      });
-    }
-
-    function drawNodes(node) {
-      const isHovered = hoverNode === node, isActive = activeNode === node;
-      if (isHovered || isActive) {
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, node.radius + 8, 0, Math.PI * 2);
-        ctx.fillStyle = node.color + "40"; ctx.fill();
+      // Render Equation
+      const eqBox = document.getElementById("node-equation-box");
+      if (data.equation) {
+        eqBox.classList.remove("hidden");
+        eqBox.innerText = data.equation;
+      } else {
+        eqBox.classList.add("hidden");
       }
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-      ctx.fillStyle = node.color; ctx.fill();
-      ctx.strokeStyle = isActive ? "#ffffff" : "rgba(255, 255, 255, 0.4)";
-      ctx.lineWidth = 2; ctx.stroke();
 
-      ctx.fillStyle = "#ffffff"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-      ctx.font = `bold ${node.depth === 0 ? 13 : 11}px 'Plus Jakarta Sans'`;
-      let displayLabel = node.labelEn.length > 20 ? node.labelEn.substring(0, 18) + ".." : node.labelEn;
-      ctx.fillText(displayLabel, node.x, node.y);
-
-      if (node.children && !collapsedNodes.has(node.id)) node.children.forEach(drawNodes);
-    }
-
-    function findNodeAt(px, py, node = mindMapData) {
-      if (!node) return null;
-      const worldX = (px - transform.x) / transform.scale;
-      const worldY = (py - transform.y) / transform.scale;
-      if (Math.hypot(worldX - node.x, worldY - node.y) <= node.radius) return node;
-      if (node.children && !collapsedNodes.has(node.id)) {
-        for (const child of node.children) {
-          const found = findNodeAt(px, py, child);
-          if (found) return found;
-        }
-      }
-      return null;
-    }
-
-    canvas.addEventListener('mousedown', e => {
-      const node = findNodeAt(e.clientX, e.clientY);
-      if (node) { activeNode = node; openDetailSidebar(node); }
-      else { isDragging = true; dragStart = { x: e.clientX - transform.x, y: e.clientY - transform.y }; }
-    });
-    window.addEventListener('mousemove', e => {
-      if (isDragging) { transform.x = e.clientX - dragStart.x; transform.y = e.clientY - dragStart.y; }
-      else { hoverNode = findNodeAt(e.clientX, e.clientY); canvas.style.cursor = hoverNode ? 'pointer' : 'grab'; }
-    });
-    window.addEventListener('mouseup', () => isDragging = false);
-    canvas.addEventListener('wheel', e => {
-      e.preventDefault();
-      const zoom = e.deltaY < 0 ? 1.1 : 0.9;
-      transform.scale = Math.min(Math.max(transform.scale * zoom, 0.3), 3.0);
-    }, { passive: false });
-
-    function openDetailSidebar(node) {
-      document.getElementById('sidebar-title-en').innerText = node.labelEn;
-      document.getElementById('sidebar-title-vi').innerText = node.labelVi;
-      document.getElementById('sidebar-desc-en').innerText = node.descEn;
-      document.getElementById('sidebar-desc-vi').innerText = node.descVi;
-      const keyTermsContainer = document.getElementById('sidebar-keyterms');
-      keyTermsContainer.innerHTML = '';
-      if (node.keyTerms) {
-        node.keyTerms.forEach(term => {
-          const badge = document.createElement('span');
-          badge.className = "px-2 py-0.5 rounded-lg text-[10px] bg-slate-800 text-slate-300 border border-slate-700";
+      // Render Terms
+      const termsContainer = document.getElementById("node-terms");
+      termsContainer.innerHTML = "";
+      if (data.keyTerms) {
+        data.keyTerms.forEach(term => {
+          const badge = document.createElement("span");
+          badge.className = "px-2.5 py-1 rounded-lg bg-slate-800 text-[10px] text-slate-300 border border-white/5 font-medium";
           badge.innerText = term;
-          keyTermsContainer.appendChild(badge);
+          termsContainer.appendChild(badge);
         });
       }
-      document.getElementById('detail-sidebar').classList.remove('translate-x-full');
+
+      document.getElementById("detail-panel").classList.remove("translate-x-[110%]");
     }
-    document.getElementById('close-sidebar-btn').onclick = () => document.getElementById('detail-sidebar').classList.add('translate-x-full');
-    document.getElementById('reset-view-btn').onclick = () => transform = { x: width / 2, y: height / 2, scale: 1 };
+
+    function closePanel() {
+      document.getElementById("detail-panel").classList.add("translate-x-[110%]");
+    }
   </script>
 </body>
 </html>
